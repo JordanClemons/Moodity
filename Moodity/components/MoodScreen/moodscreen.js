@@ -6,9 +6,8 @@ const MoodScreen = ({navigation}) =>{
 
     return(
         <View style={styles.homeContainer}>
-            <View style={styles.homeText}>
-                <Text style={styles.title}>Moodity</Text>
-                <Text style={styles.subtitle}>How are you feeling today?</Text>
+            <View style={styles.contentContainer}>
+                
             </View>
       </View>
     );

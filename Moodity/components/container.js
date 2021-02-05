@@ -1,111 +1,112 @@
-import React, {useState} from 'react';
-import { View, Button } from 'react-native';
+import React from 'react';
 import MoodScreen from './MoodScreen/moodscreen.js';
 import CalendarScreen from './CalendarScreen/calendarscreen.js';
 import StatsScreen from './StatsScreen/statsscreen.js';
 import SettingsScreen from './SettingsScreen/settings.js';
-import StackScreen from './stackscreen.js';
-import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator} from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { color } from 'react-native-reanimated';
 
-const Drawer = createDrawerNavigator();
-const DetailStack = createStackNavigator();
+const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
 
-const MoodStackScreen = ({navigation}) =>(
-  <DetailStack.Navigator screenOptions={{
+const HomeStack = createStackNavigator();
+const MoodStackScreen = () => (
+  <HomeStack.Navigator screenOptions={{
     headerStyle:{
-      backgroundColor: '#F3DD6D',
+    backgroundColor: '#1A1A1A',
+    shadowColor: 'transparent'
     },
-    headerTintColor: '#1A1A1A',
+    headerTintColor: '#F3DD6D',
     headerTitleStyle: {
-        fontSize: 20,
-        fontWeight: '800',
-    }
-  }}>
-    <DetailStack.Screen name="Mood" component={MoodScreen} options={{
-      title: 'Moodity',
-      headerLeft: () => (
-        <Icon.Button name="ios-menu" size={30} color='#1A1A1A' backgroundColor='#F3DD6D' onPress={() => navigation.openDrawer()}></Icon.Button>
-      )
-      }}/>
-  </DetailStack.Navigator>
-)
+    fontSize: 25,
+    fontWeight: '800',
+  }}}>
+    <HomeStack.Screen name="Moodity" component={MoodScreen}  options={({ navigation }) => ({
+              title: 'Moodity',
+            })}/>
+  </HomeStack.Navigator>
+);
 
-const CalendarStackScreen = ({navigation}) =>(
-  <DetailStack.Navigator screenOptions={{
+const CalendarStackScreen = () => (
+  <HomeStack.Navigator screenOptions={{
     headerStyle:{
-      backgroundColor: '#F3DD6D',
+    backgroundColor: '#1A1A1A',
+    shadowColor: 'transparent'
     },
-    headerTintColor: '#1A1A1A',
+    headerTintColor: '#F3DD6D',
     headerTitleStyle: {
-        fontSize: 20,
-        fontWeight: '800',
-    }
-  }}>
-    <DetailStack.Screen name="Mood" component={CalendarScreen} options={{
-      title: 'Calendar',
-      headerLeft: () => (
-        <Icon.Button name="ios-menu" size={30} color='#1A1A1A' backgroundColor='#F3DD6D' onPress={() => navigation.openDrawer()}></Icon.Button>
-      )
-      }}/>
-  </DetailStack.Navigator>
-)
+    fontSize: 25,
+    fontWeight: '800',
+  }}}>
+    <HomeStack.Screen name="Calendar" component={CalendarScreen}  options={({ navigation }) => ({
+              title: 'Moodity',
+            })}/>
+  </HomeStack.Navigator>
+);
 
-const StatsStackScreen = ({navigation}) =>(
-  <DetailStack.Navigator screenOptions={{
+const StatsStackScreen = () => (
+  <HomeStack.Navigator screenOptions={{
     headerStyle:{
-      backgroundColor: '#F3DD6D',
+    backgroundColor: '#1A1A1A',
+    shadowColor: 'transparent'
     },
-    headerTintColor: '#1A1A1A',
+    headerTintColor: '#F3DD6D',
     headerTitleStyle: {
-        fontSize: 20,
-        fontWeight: '800',
-    }
-  }}>
-    <DetailStack.Screen name="Stats" component={StatsScreen} options={{
-      title: 'Stats',
-      headerLeft: () => (
-        <Icon.Button name="ios-menu" size={30} color='#1A1A1A' backgroundColor='#F3DD6D' onPress={() => navigation.openDrawer()}></Icon.Button>
-      )
-      }}/>
-  </DetailStack.Navigator>
-)
+    fontSize: 25,
+    fontWeight: '800',
+  }}}>
+    <HomeStack.Screen name="Moodity" component={StatsScreen}  options={({ navigation }) => ({
+              title: 'Moodity',
+            })}/>
+  </HomeStack.Navigator>
+);
 
-const SettingsStackScreen = ({navigation}) =>(
-  <DetailStack.Navigator screenOptions={{
+const SettingsStackScreen = () => (
+  <HomeStack.Navigator screenOptions={{
     headerStyle:{
-      backgroundColor: '#F3DD6D',
+    backgroundColor: '#1A1A1A',
+    shadowColor: 'transparent'
     },
-    headerTintColor: '#1A1A1A',
+    headerTintColor: '#F3DD6D',
     headerTitleStyle: {
-        fontSize: 20,
-        fontWeight: '800',
-    }
-  }}>
-    <DetailStack.Screen name="Settings" component={SettingsScreen} options={{
-      title: 'Settings',
-      headerLeft: () => (
-        <Icon.Button name="ios-menu" size={30} color='#1A1A1A' backgroundColor='#F3DD6D' onPress={() => navigation.openDrawer()}></Icon.Button>
-      )
-      }}/>
-  </DetailStack.Navigator>
-)
+    fontSize: 25,
+    fontWeight: '800',
+  }}}>
+    <HomeStack.Screen name="Moodity" component={SettingsScreen}  options={({ navigation }) => ({
+              title: 'Moodity',
+            })}/>
+  </HomeStack.Navigator>
+);
 
+const customTabBarStyle = {
+  activeTintColor: '#F3DD6D',
+  inactiveTintColor: '#FFF',
+  allowFontScaling: true,
+  labelStyle: { fontSize: 16},
+  showLabel: false,
+  style: {borderTopColor: '#FFF' , backgroundColor: '#1A1A1A'},
+}
 
-
-const Container = (props) =>{
+const Container = () =>{
 
     return (
         <NavigationContainer>
-          <Drawer.Navigator initialRouteName="Home">
-            <Drawer.Screen name="Home" component={MoodStackScreen} />
-            <Drawer.Screen name="Calendar" component={CalendarStackScreen} />
-            <Drawer.Screen name="Stats" component={StatsStackScreen} />
-            <Drawer.Screen name="Settings" component={SettingsStackScreen} />
-          </Drawer.Navigator>
+          <Tab.Navigator initialRouteName="Mood" tabBarOptions={customTabBarStyle}>
+            <Tab.Screen name="Mood" component={MoodStackScreen} options={{tabBarIcon: ({ color, size }) => (
+              <Icon name="heart-outline" color={color} size={size} />),
+          }}/>
+          <Tab.Screen name="Calendar" component={CalendarStackScreen} options={{tabBarIcon: ({ color, size }) => (
+              <Icon name="calendar-outline" color={color} size={size} />),
+          }}/>
+          <Tab.Screen name="Stats" component={StatsStackScreen} options={{tabBarIcon: ({ color, size }) => (
+              <Icon name="stats-chart-outline" color={color} size={size} />),
+          }}/>
+          <Tab.Screen name="Settings" component={SettingsStackScreen} options={{tabBarIcon: ({ color, size }) => (
+              <Icon name="settings-outline" color={color} size={size} />),
+          }}/>
+          </Tab.Navigator>
         </NavigationContainer>
       );
 };
