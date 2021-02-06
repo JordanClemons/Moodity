@@ -6,13 +6,19 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        width: '100%',
-        height: '100%',
         backgroundColor: '#1A1A1A',
       },
 
-      cotentContainer:{
-        
+      contentContainer:{
+        flex: .85,
+        height: '20%',
+        width: '90%',
+      },
+
+      dateContainer:{
+        flex: 1,
+        justifyContent: 'flex-start',
+        alignItems: 'center',
       }
 
 })
