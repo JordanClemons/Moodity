@@ -3,7 +3,7 @@ import {StyleSheet} from 'react-native';
 const styles = StyleSheet.create({
 
       dateContainer:{
-        flex: .4,
+        flex: .2,
         flexDirection: 'row',
         justifyContent: 'space-evenly',
         width: '100%',

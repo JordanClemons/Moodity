@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
       },
 
       contentContainer:{
-        flex: .85,
+        flex: .80,
         height: '20%',
         width: '90%',
       },

@@ -8,9 +8,9 @@ const PickerFrag = () =>{
     const [number, setNumber] = useState("How was your day?");
 
     return(
-        <View>
+        <View style={{flex:.8}}>
         <CircularPicker
-            size={350}
+            size={380}
             strokeWidth={30}
             steps={[0,10,20,30,40,50,60,70,80,90]}
             backgroundColor='rgb(189, 189, 189)'
@@ -22,7 +22,10 @@ const PickerFrag = () =>{
             onChange={(v) => setNumber((v/10).toFixed(1))}
         >
             <>
-                <Text style={[number === "How was your day?" ? styles.blankText : styles.circleText]}>{number}</Text>
+                <Text style={number > 8 ? {color:'#F3DD6D', fontSize:80} : 
+                number > 4 ? {color:'#EA9805', fontSize:80} : 
+                number >= 0 ? {color:'#E91919', fontSize: 80} : 
+                styles.blankText}>{number}</Text>
             </>   
         </CircularPicker>
         </View>

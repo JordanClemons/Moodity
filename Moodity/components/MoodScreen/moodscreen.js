@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
-import {View, Text, Button} from 'react-native';
+import {View, TextInput, Button, Text} from 'react-native';
 import styles from './styles.js';
 import DateFrag from './datefrag/datefrag.js';
 import PickerFrag from './pickerfrag/pickerfrag.js';
+import NoteFrag from './notefrag/notefrag.js';
 
 const MoodScreen = ({navigation}) =>{
 
@@ -12,6 +13,7 @@ const MoodScreen = ({navigation}) =>{
                 <View style={styles.dateContainer}>
                     <DateFrag/>
                     <PickerFrag/>
+                    <NoteFrag/>
                 </View>
             </View>
       </View>
